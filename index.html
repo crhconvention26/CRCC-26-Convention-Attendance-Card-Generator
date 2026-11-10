@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100d0a">
+<meta name="description" content="Create and share your CRCC Prophetic & Apostolic Healing Convention '26 attendance card.">
+<title>CRCC '26 — Attendance Card Generator</title>
+<link rel="preload" as="image" href="official-crcc-convention-flyer.jpg">
+<style>
+:root{--gold:#e9b95b;--red:#c91d24;--ink:#100d0a;--cream:#fff6e6}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% -10%,#49301a 0,#17110c 42%,#080707 100%);color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+header{text-align:center;padding:30px 18px 18px}
+.eyebrow{color:var(--gold);font-size:.72rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase}
+h1{font-family:Georgia,serif;font-size:clamp(1.65rem,5vw,2.55rem);margin:8px 0 6px;line-height:1.05}
+header p{margin:0;color:#d8c9b5;font-size:.95rem}
+main{width:min(100% - 28px,980px);margin:0 auto 42px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:26px;align-items:start}
+.panel{background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));border:1px solid rgba(233,185,91,.28);border-radius:22px;padding:22px;box-shadow:0 18px 55px #0008}
+.panel h2{font-size:1.05rem;margin:0 0 8px}
+.panel .hint{color:#c9bca9;font-size:.87rem;line-height:1.5;margin:0 0 18px}
+.upload{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:190px;border:1.5px dashed #d9ad59;border-radius:18px;background:rgba(0,0,0,.25);padding:20px;cursor:pointer;transition:.2s}
+.upload:hover,.upload:focus-within{background:rgba(233,185,91,.1);border-color:#ffe1a0}
+.upload .icon{font-size:2.4rem;margin-bottom:8px}
+.upload strong{font-size:1rem}
+.upload small{color:#c9bca9;margin-top:6px}
+input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+button{border:0;border-radius:12px;padding:14px 12px;font-weight:800;font-size:.9rem;cursor:pointer;transition:transform .15s,opacity .15s}
+button:active{transform:scale(.98)}
+.primary{background:linear-gradient(110deg,#f4d38e,#c18a34);color:#1b1208;box-shadow:0 7px 22px #b47b2933}
+.secondary{background:#2c2118;color:#f5dfb5;border:1px solid #76572d}
+button:disabled{opacity:.4;cursor:not-allowed}
+.privacy{font-size:.78rem;color:#bdb09f;line-height:1.5;margin:15px 2px 0}
+.preview-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}
+.preview-head span{font-size:.75rem;color:#d5bd91}
+.canvas-wrap{background:#050505;border:1px solid rgba(233,185,91,.35);border-radius:15px;overflow:hidden;box-shadow:0 12px 35px #0009}
+canvas{display:block;width:100%;height:auto;aspect-ratio:4/5}
+.preview-note{text-align:center;color:#c9bca9;font-size:.78rem;margin:12px 0 0}
+footer{text-align:center;color:#9f917e;font-size:.75rem;padding:0 18px 26px}
+@media(max-width:760px){header{padding-top:24px}main{grid-template-columns:1fr;max-width:560px;gap:16px}.panel{padding:17px}.preview-panel{order:2}.controls-panel{order:1}}
+@media(max-width:380px){.actions{grid-template-columns:1fr}.panel{padding:14px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Champions' Royal House</div>
+  <h1>Your Convention Attendance Card</h1>
+  <p>Make it yours. Celebrate RHEMA. Share the expectation.</p>
+</header>
+<main>
+  <section class="panel controls-panel">
+    <h2>Upload your photograph</h2>
+    <p class="hint">Choose a clear portrait. Your photo is placed into the official convention artwork and cropped to fit naturally.</p>
+    <label class="upload" for="photoInput" tabindex="0" id="uploadLabel">
+      <span class="icon">✦</span>
+      <strong id="uploadTitle">Tap to upload your photo</strong>
+      <small id="uploadSub">JPG, PNG or WEBP · Best with a clear face</small>
+    </label>
+    <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp">
+    <div class="actions">
+      <button class="primary" id="downloadBtn" disabled>Download my card</button>
+      <button class="secondary" id="shareBtn" disabled>Share card</button>
+      <button class="secondary" id="changeBtn" disabled>Change photo</button>
+      <button class="secondary" id="resetBtn" disabled>Reset</button>
+    </div>
+    <p class="privacy">🔒 Privacy first: your photograph is processed on this device in your browser. It is not uploaded to a server or stored by this website.</p>
+  </section>
+  <section class="panel preview-panel">
+    <div class="preview-head"><h2>Live card preview</h2><span>PORTRAIT · 4:5</span></div>
+    <div class="canvas-wrap"><canvas id="card" width="1080" height="1350" aria-label="Preview of your CRCC attendance card"></canvas></div>
+    <p class="preview-note">Your finished card downloads as a high-resolution 1080 × 1350 PNG.</p>
+  </section>
+</main>
+<footer>CHAMPIONS' ROYAL HOUSE · PROPHETIC &amp; APOSTOLIC HEALING CONVENTION '26</footer>
+<script src="app.js"></script>
+</body>
+</html>
